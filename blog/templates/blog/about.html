@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Rss_News_Feed
+    </title>
+  </head>
+  <body>
+    {% extends 'blog/home.html' %}
+    {% block body %}
+      <h1 text_allign"centre" >{{ feed.feed.title }}</h1>
+
+      {% if feed.items %}
+      {% for item in feed.items %}
+      <p style="border:2px solid black;">
+              <table>
+                <tr>
+                  <td>{% if item.media_content.0.url %}
+                    <img src = {{ item.media_content.0.url }} style="widyh:100px;height:200px"><br>
+                    {% endif %}
+                  </td>
+                  <th>
+                    <a href="{{ item.link }}" style="color:black">{{ item.title }}</a><br>
+                    {% if item.published %}
+                    {{ item.published }}<br>
+                    {% endif %}
+                    {% if item.description %}
+                    {{item.description}}<br>
+                    {% endif %}
+                  </th>
+                </tr>
+              </table>
+        </p>
+
+      {% endfor %}
+      {% endif %}
+    {% endblock %}
+    {{ item }}
+  </body>
+</html>
